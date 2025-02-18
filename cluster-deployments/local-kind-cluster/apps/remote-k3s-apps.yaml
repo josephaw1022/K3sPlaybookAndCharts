@@ -95,3 +95,11 @@ spec:
       - CreateNamespace=true
       - Validate=false
       - SkipDryRunOnMissingResource=true
+  ignoreDifferences:
+  - group: operator.tekton.dev
+    kind: TektonConfig
+    jsonPointers:
+      - /metadata/annotations/kubectl.kubernetes.io~1last-applied-configuration
+      - /metadata/managedFields
+      - /spec/pipeline/enable-tekton-oci-bundles
+      - /status
