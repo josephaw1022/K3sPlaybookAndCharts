@@ -3,6 +3,8 @@ kind: Subscription
 metadata:
   name: my-community-kubevirt-hyperconverged
   namespace: operators
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   channel: stable
   name: community-kubevirt-hyperconverged

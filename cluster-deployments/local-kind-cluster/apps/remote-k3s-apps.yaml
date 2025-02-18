@@ -1,2 +1,24 @@
 
 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: remote-k3s-cluster-apps
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/josephaw1022/K3sPlaybookAndCharts.git
+    targetRevision: main
+    path: cluster-deployments/remote-k3s-cluster/apps
+  destination:
+    server: https://192.168.2.3:6443
+    namespace: olm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

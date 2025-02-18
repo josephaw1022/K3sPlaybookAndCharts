@@ -14,7 +14,7 @@ spec:
     directory:
       include: bundled.yaml
   destination:
-    server: https://kubernetes.default.svc
+    server: https://192.168.2.3:6443
     namespace: kubevirt-manager
   syncPolicy:
     automated:
