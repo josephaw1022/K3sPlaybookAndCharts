@@ -1,0 +1,34 @@
+repositories:
+  - name: metallb
+    url: https://metallb.github.io/metallb
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+  - name: cert-manager
+    url: https://charts.jetstack.io
+
+releases:
+  - name: my-metallb
+    namespace: metallb-system
+    createNamespace: true
+    chart: metallb/metallb
+    version: 0.14.9
+    values: []
+
+  - name: my-contour
+    namespace: projectcontour
+    createNamespace: true
+    chart: bitnami/contour
+    version: 19.5.6
+    values: []
+
+  - name: cert-manager
+    namespace: cert-manager
+    createNamespace: true
+    chart: cert-manager/cert-manager
+    version: 1.17.1
+    values: []
+    set:
+      - name: crds.enabled
+        value: true

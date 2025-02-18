@@ -1,0 +1,13 @@
+version: '3'
+
+
+includes: 
+  snc:
+    taskfile: SingleNodeCluster/taskfile.yaml
+    dir: SingleNodeCluster
+
+tasks:
+  default:
+    description: "List all available tasks"
+    cmds:
+      - task --list

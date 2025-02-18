@@ -1,0 +1,33 @@
+repositories:
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+
+releases:
+  - name: argo-cd
+    namespace: argocd
+    createNamespace: true
+    chart: argo/argo-cd
+    version: 7.8.2
+    values:
+      - global:
+          domain: argocd.kind.local.kubesoar.com
+
+      - configs:
+          cm:
+            dex.config: ""
+          params:
+            server.insecure: true
+          tls:
+            certificateSecretName: kind-local-cert-tls
+      - server:
+          ingress:
+            enabled: true
+            ingressClassName: contour
+            annotations:
+              cert-manager.io/cluster-issuer: root-ca-cluster-issuer
+            hosts:
+              - argocd.kind.local.kubesoar.com
+            tls:
+              - secretName: kind-local-cert-tls
+                hosts:
+                  - argocd.kind.local.kubesoar.com

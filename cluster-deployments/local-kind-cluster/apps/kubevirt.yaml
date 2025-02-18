@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubevirt
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/kubevirt/kubevirt/releases/download/v1.4.0
+      targetRevision: HEAD
+      path: kubevirt-operator.yaml
+    - repoURL: https://github.com/kubevirt/kubevirt/releases/download/v1.4.0
+      targetRevision: HEAD
+      path: kubevirt-cr.yaml
+  destination:
+    server: https://192.168.2.3:6443
+    namespace: kubevirt
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

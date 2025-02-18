@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubevirt-manager
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kubevirt-manager/kubevirt-manager.git
+    targetRevision: main
+    path: kubernetes
+    directory:
+      include: bundled.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubevirt-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,28 @@
+# flannel-backend: "none"
+# disable-kube-proxy: true
+# disable-network-policy: true
+
+cluster-init: true
+disable:
+  - servicelb
+  - traefik
+
+write-kubeconfig-mode: "0644"
+# tls-san:
+#   - "foo.local"
+
+# node-labels:
+#   - "foo=bar"
+#   - "something=amazing"
+
+# node-taints:
+#   - "alice=bob:NoExecute"
+#   - "charlie=delta:NoSchedule"
+
+# token: "K10d3n1d3n7k3y23dfads"
+
+
+selinux: true
+
+
+# datastore-endpoint: "postgres://user:password@host:port/dbname"
