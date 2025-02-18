@@ -19,6 +19,7 @@ releases:
             server.insecure: true
           tls:
             certificateSecretName: kind-local-cert-tls
+
       - server:
           ingress:
             enabled: true
@@ -31,3 +32,6 @@ releases:
               - secretName: kind-local-cert-tls
                 hosts:
                   - argocd.kind.local.kubesoar.com
+
+      - secret:
+          argocdServerAdminPassword: "$2a$10$R79A2MBHSkyle2obf.C/e.Qn0T1kb8CQ0JMhLofYtJxGhzC2Clc9."

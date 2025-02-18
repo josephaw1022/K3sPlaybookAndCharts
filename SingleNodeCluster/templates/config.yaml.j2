@@ -1,17 +1,17 @@
-{% if flannel-backend is defined %}
-flannel-backend: "{{ flannel-backend }}"
+{% if flannel_backend is defined %}
+flannel-backend: "{{ flannel_backend }}"
 {% endif %}
 
-{% if disable-kube-proxy is defined %}
-disable-kube-proxy: {{ disable-kube-proxy | lower }}
+{% if disable_kube_proxy is defined %}
+disable-kube-proxy: {{ disable_kube_proxy | lower }}
 {% endif %}
 
-{% if disable-network-policy is defined %}
-disable-network-policy: {{ disable-network-policy | lower }}
+{% if disable_network_policy is defined %}
+disable-network-policy: {{ disable_network_policy | lower }}
 {% endif %}
 
-{% if cluster-init is defined %}
-cluster-init: {{ cluster-init | lower }}
+{% if cluster_init is defined %}
+cluster-init: {{ cluster_init | lower }}
 {% endif %}
 
 {% if disable is defined and disable|length > 0 %}
@@ -21,27 +21,27 @@ disable:
 {% endfor %}
 {% endif %}
 
-{% if write-kubeconfig-mode is defined %}
-write-kubeconfig-mode: "{{ write-kubeconfig-mode }}"
+{% if write_kubeconfig_mode is defined %}
+write-kubeconfig-mode: "{{ write_kubeconfig_mode }}"
 {% endif %}
 
-{% if tls-san is defined and tls-san|length > 0 %}
+{% if tls_san is defined and tls_san|length > 0 %}
 tls-san:
-{% for item in tls-san %}
+{% for item in tls_san %}
   - "{{ item }}"
 {% endfor %}
 {% endif %}
 
-{% if node-labels is defined and node-labels|length > 0 %}
+{% if node_labels is defined and node_labels|length > 0 %}
 node-label:
-{% for label in node-labels %}
+{% for label in node_labels %}
   - "{{ label }}"
 {% endfor %}
 {% endif %}
 
-{% if node-taints is defined and node-taints|length > 0 %}
+{% if node_taints is defined and node_taints|length > 0 %}
 node-taint:
-{% for taint in node-taints %}
+{% for taint in node_taints %}
   - "{{ taint }}"
 {% endfor %}
 {% endif %}
@@ -57,7 +57,7 @@ selinux: "{{ selinux }}"
 {% endif %}
 
 
-{% if datastore-endpoint is defined %}
-datastore-endpoint: "{{ datastore-endpoint }}"
+{% if datastore_endpoint is defined %}
+datastore-endpoint: "{{ datastore_endpoint }}"
 {% endif %}
 

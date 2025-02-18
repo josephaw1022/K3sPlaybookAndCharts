@@ -26,5 +26,12 @@ clean: ## Delete the Kind cluster
 	kind delete cluster --name homelab-kind-cluster
 
 
+port-forward-argo: ## Port forward ArgoCD server
+	kubectl port-forward svc/argo-cd-argocd-server -n argocd 8080:443
+
+
+add-cluster: ## Adds k3s cluster to local cluster's argocd server
+	bash ./add-k3s-cluster-to-local-cluster.sh
+
 install-apps: ## Install apps via ArgoCD apps
 	kubectl apply -f ./local-kind-cluster/apps
