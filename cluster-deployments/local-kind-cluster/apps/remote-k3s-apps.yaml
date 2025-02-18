@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: remote-k3s-cluster-apps
+  name: remote-k3s-cluster-app-catalog-sources
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,7 +12,9 @@ spec:
   source:
     repoURL: https://github.com/josephaw1022/K3sPlaybookAndCharts.git
     targetRevision: main
-    path: cluster-deployments/remote-k3s-cluster/apps
+    path: cluster-deployments/remote-k3s-cluster/apps/catalog-sources
+    directory:
+      recurse: true
   destination:
     server: https://192.168.2.3:6443
     namespace: olm
@@ -22,3 +24,74 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - Validate=true
+      - ServerSideApply=true
+
+
+
+
+---
+
+
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: remote-k3s-cluster-app-subscriptions
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/josephaw1022/K3sPlaybookAndCharts.git
+    targetRevision: main
+    path: cluster-deployments/remote-k3s-cluster/apps/subscriptions
+    directory:
+      recurse: true
+  destination:
+    server: https://192.168.2.3:6443
+    namespace: olm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Validate=true
+      - ServerSideApply=true
+
+# ---
+
+
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: remote-k3s-cluster-app-operators
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/josephaw1022/K3sPlaybookAndCharts.git
+#     targetRevision: main
+#     path: cluster-deployments/remote-k3s-cluster/apps/apps
+#     directory:
+#       recurse: true
+#   destination:
+#     server: https://192.168.2.3:6443
+#     namespace: olm
+  
+
+#   syncPolicy:
+#     retry:
+#       limit: 10
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+#       - Validate=false
+#       - SkipDryRunOnMissingResource=true
