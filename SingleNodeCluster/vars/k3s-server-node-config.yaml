@@ -1,9 +1,0 @@
-cluster_init: true
-
-disable:
-  - servicelb
-  - traefik
-
-write_kubeconfig_mode: "0644"
-
-selinux: true

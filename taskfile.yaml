@@ -2,9 +2,9 @@ version: '3'
 
 
 includes: 
-  snc:
-    taskfile: SingleNodeCluster/taskfile.yaml
-    dir: SingleNodeCluster
+  cluster:
+    taskfile: SimpleCluster/taskfile.yaml
+    dir: SimpleCluster 
 
 tasks:
   default:

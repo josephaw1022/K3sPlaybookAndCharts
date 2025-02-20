@@ -47,17 +47,17 @@ node-taint:
 {% endif %}
 
 {% if token is defined %}
-token: "{{ token }}"
+token: {{ token }}
 {% endif %}
-
-
 
 {% if selinux is defined %}
-selinux: "{{ selinux }}"
+selinux: {{ selinux }}
 {% endif %}
-
 
 {% if datastore_endpoint is defined %}
 datastore-endpoint: "{{ datastore_endpoint }}"
 {% endif %}
 
+{% if cluster_cidr is defined %}
+cluster-cidr: "{{ cluster_cidr }}"
+{% endif %}
